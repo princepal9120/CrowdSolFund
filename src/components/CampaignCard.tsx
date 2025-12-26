@@ -40,10 +40,11 @@ const CampaignCard: React.FC<{ campaign: Campaign }> = ({ campaign }) => {
           alt={`${campaign.title} campaign`}
           width={400}
           height={250}
-          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
         />
-        <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 border shadow-sm ${statusColor}`}>
-          <StatusIcon className="text-xs" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold flex items-center gap-1.5 border backdrop-blur-md shadow-sm transition-all group-hover:translate-y-[-2px] ${statusColor}`}>
+          <StatusIcon className="text-[10px]" />
           {statusText}
         </div>
       </div>
@@ -59,35 +60,47 @@ const CampaignCard: React.FC<{ campaign: Campaign }> = ({ campaign }) => {
         </div>
 
         <div className="mt-6 space-y-4">
-          {/* Progress Bar */}
-          <div>
-            <div className="flex justify-between items-end mb-2">
-              <span className="text-2xl font-bold text-slate-900">
-                {campaign.amountRaised} <span className="text-sm font-medium text-slate-400">SOL</span>
-              </span>
-              <span className="text-xs font-semibold text-slate-500">
-                of {campaign.goal} SOL
-              </span>
+          {/* Progress Bar Area */}
+          <div className="bg-slate-50/50 p-4 rounded-xl border border-slate-100 group-hover:border-emerald-100 group-hover:bg-emerald-50/30 transition-all">
+            <div className="flex justify-between items-end mb-3">
+              <div className="flex flex-col">
+                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Raised</span>
+                <span className="text-xl font-black text-slate-900 leading-none mt-1">
+                  {campaign.amountRaised} <span className="text-xs font-bold text-slate-400">SOL</span>
+                </span>
+              </div>
+              <div className="flex flex-col items-end">
+                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Goal</span>
+                <span className="text-sm font-bold text-slate-600 mt-1">
+                  {campaign.goal} SOL
+                </span>
+              </div>
             </div>
-            <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+            <div className="h-2.5 w-full bg-slate-200/50 rounded-full overflow-hidden p-[2px]">
               <div
-                className={`h-full rounded-full transition-all duration-500 ${isFunded ? 'bg-blue-500' : 'bg-emerald-500'}`}
+                className={`h-full rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(16,185,129,0.3)] ${isFunded ? 'bg-gradient-to-r from-blue-500 to-blue-400' : 'bg-gradient-to-r from-emerald-600 to-emerald-400'}`}
                 style={{ width: `${progressPercentage}%` }}
               />
             </div>
           </div>
 
-          <div className="flex justify-between items-center pt-4 border-t border-slate-100">
-            <div className="flex items-center gap-2 text-slate-600 text-xs font-medium">
-              <FaUsers className="text-slate-400" />
-              <span>{campaign.donors} Backers</span>
+          <div className="flex justify-between items-center pt-2">
+            <div className="flex items-center gap-3">
+              <div className="flex -space-x-2">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-slate-300 to-slate-400" />
+                  </div>
+                ))}
+              </div>
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-tight">{campaign.donors} Backers</span>
             </div>
 
             <Link
               href={`/campaign/${campaign.publicKey}`}
-              className="text-emerald-600 hover:text-emerald-700 text-sm font-semibold hover:underline"
+              className="inline-flex items-center justify-center px-4 py-2 bg-slate-900 hover:bg-emerald-600 text-white text-xs font-bold rounded-lg transition-all active:scale-95"
             >
-              View Details
+              View Campaign
             </Link>
           </div>
         </div>

@@ -14,22 +14,22 @@ export default function Page() {
       <CampaignHero />
 
       <div className="container mx-auto px-6 -mt-10 relative z-20">
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-12 flex flex-col md:flex-row gap-4 items-center justify-between border border-slate-100">
-          <div className="relative w-full md:w-96">
-            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-200/50 p-6 mb-12 flex flex-col md:flex-row gap-4 items-center justify-between border border-white">
+          <div className="relative w-full md:w-96 group">
+            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors" />
             <input
               type="text"
               placeholder="Search campaigns..."
-              className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all placeholder:text-slate-400"
+              className="w-full pl-11 pr-4 py-3.5 bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 focus:bg-white outline-none transition-all placeholder:text-slate-400 font-medium"
             />
           </div>
 
           <div className="flex items-center gap-3 w-full md:w-auto">
-            <button className="flex items-center gap-2 px-4 py-3 bg-white border border-slate-200 rounded-lg text-slate-600 font-medium hover:border-emerald-500 hover:text-emerald-600 transition-colors">
-              <FaFilter />
+            <button className="flex items-center gap-2 px-5 py-3.5 bg-white border border-slate-200 rounded-xl text-slate-600 font-semibold hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 transition-all active:scale-95">
+              <FaFilter className="text-slate-400" />
               <span>All Status</span>
             </button>
-            <button className="flex items-center gap-2 px-4 py-3 bg-white border border-slate-200 rounded-lg text-slate-600 font-medium hover:border-emerald-500 hover:text-emerald-600 transition-colors">
+            <button className="flex items-center gap-2 px-5 py-3.5 bg-white border border-slate-200 rounded-xl text-slate-600 font-semibold hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50/50 transition-all active:scale-95">
               <span>Newest First</span>
             </button>
           </div>

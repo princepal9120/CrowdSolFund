@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { ReactQueryProvider } from './react-query-provider'
+import { SolanaProvider } from '@/components/solana-provider'
 
 const metadata = {
   title: 'crowdfund',
@@ -20,12 +21,14 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-white">
         <ReactQueryProvider>
-          <Header />
-          <main className="max-w-6xl mx-auto min-h-screen bg-white">
-            <div className=" h-24" />
-            {children}
-            <div className=" h-24" />
-          </main>
+          <SolanaProvider>
+            <Header />
+            <main className="max-w-6xl mx-auto min-h-screen bg-white">
+              <div className=" h-24" />
+              {children}
+              <div className=" h-24" />
+            </main>
+          </SolanaProvider>
 
           <ToastContainer
             position="bottom-center"

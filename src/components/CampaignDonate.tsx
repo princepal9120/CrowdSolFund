@@ -1,131 +1,88 @@
-import React, { FormEvent, useState } from 'react'
-import Link from 'next/link'
-import { FaDollarSign, FaDonate, FaEdit, FaTrashAlt, FaRocket, FaLock } from 'react-icons/fa'
 import { Campaign } from '@/utils/interfaces'
+import React, { useState } from 'react'
+import { FaHeart, FaShieldAlt, FaRocket, FaInfoCircle } from 'react-icons/fa'
 
-const CampaignDonate: React.FC<{ campaign: Campaign; pda: string }> = ({
+export default function CampaignDonate({
   campaign,
-  pda,
-}) => {
+}: {
+  campaign: Campaign
+  pda: string
+}) {
   const [amount, setAmount] = useState('')
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    if (Number(amount) + campaign.amountRaised > campaign.goal) {
-      return alert('Amount exceeds campaign goal')
-    }
-
-    console.log(`Donated ${amount} SOL to campaign ID: ${campaign.cid}`)
-    alert(`Donation successful! ${amount} SOL contributed.`)
-    setAmount('')
-  }
-
-  const remaining = campaign.goal - campaign.amountRaised
-  const percentage = Math.min((Number(amount || 0) / remaining) * 100, 100)
+  const remaining = Math.max(0, campaign.goal - campaign.amountRaised)
 
   return (
-    <div className="space-y-6 sticky top-24">
-      <div className="bg-white border border-slate-200 shadow-xl shadow-slate-200/50 rounded-2xl overflow-hidden">
-        <div className="bg-slate-50 border-b border-slate-100 p-6">
-          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-            <FaRocket className="text-emerald-600" />
-            Back this Project
-          </h2>
-          <p className="text-slate-500 text-sm mt-1">
-            Secure on-chain transaction
-          </p>
-        </div>
+    <div className="space-y-6 sticky top-28">
+      <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-2xl shadow-slate-200/40 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/10 transition-colors" />
 
-        <div className="p-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label
-                htmlFor="donationAmount"
-                className="block text-slate-700 font-semibold mb-2 text-sm"
-              >
-                Enter Amount (SOL)
+        <div className="relative z-10">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase">Support Protocol</h3>
+            <div className="w-10 h-10 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-300 group-hover:text-emerald-500 transition-colors shadow-inner">
+              <FaHeart className="text-sm" />
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <div className="relative group/input">
+              <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-3 ml-1">
+                Amount (SOL)
               </label>
               <div className="relative">
                 <input
-                  type="text"
-                  name="donationAmount"
-                  placeholder="0.00"
+                  type="number"
                   value={amount}
-                  onChange={(e) => {
-                    const value = e.target.value
-                    if (/^\d*\.?\d{0,2}$/.test(value)) {
-                      setAmount(value)
-                    }
-                  }}
-                  className="w-full pl-4 pr-16 py-4 border border-slate-300 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 text-2xl font-bold text-slate-900 placeholder:text-slate-300 transition-all"
-                  min="0.01"
-                  required
+                  onChange={(e) => setAmount(e.target.value)}
+                  placeholder="0.00"
+                  className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-5 text-2xl font-black text-slate-900 placeholder:text-slate-200 outline-none focus:border-emerald-500 focus:bg-white transition-all shadow-inner"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">SOL</span>
-              </div>
-
-              <div className="flex justify-between items-center mt-2 text-xs font-medium text-slate-500">
-                <span>Remaining Goal: {remaining.toLocaleString()} SOL</span>
+                <div className="absolute right-6 top-1/2 -translate-y-1/2 font-black text-slate-300 group-focus-within/input:text-emerald-500 transition-colors tracking-tighter">SOL</div>
               </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={
-                !amount ||
-                !campaign.active ||
-                campaign.amountRaised >= campaign.goal
-              }
-              className={`w-full py-4 px-6 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-200
-                ${!amount || !campaign.active || campaign.amountRaised >= campaign.goal
-                  ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                  : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/20 hover:-translate-y-0.5'
-                }`}
-            >
-              <FaDonate className={!amount ? 'text-slate-400' : 'text-white'} />
-              {campaign.active ? 'Donate Now' : 'Campaign Ended'}
+            <button className="w-full bg-slate-900 hover:bg-emerald-600 text-white font-black py-6 rounded-2xl shadow-xl shadow-slate-900/10 hover:shadow-emerald-600/20 active:scale-[0.98] transition-all flex items-center justify-center gap-3 group/btn">
+              <FaRocket className="text-slate-500 group-hover/btn:text-white group-hover/btn:translate-y-[-2px] transition-all" />
+              <span className="uppercase tracking-[0.2em] text-xs">Commit Funding</span>
             </button>
+          </div>
 
-            <div className="text-center">
-              <span className="text-xs text-slate-400 flex items-center justify-center gap-1">
-                <FaLock className="text-[10px]" />
-                Transactions are secure and irreversible
-              </span>
+          <div className="mt-8 grid grid-cols-2 gap-4">
+            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 shadow-inner">
+              <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1">Gap</p>
+              <p className="text-sm font-black text-slate-900">{remaining.toLocaleString()} <span className="text-[10px] text-slate-400">SOL</span></p>
             </div>
-          </form>
+            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 shadow-inner">
+              <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1">Fee</p>
+              <p className="text-sm font-black text-slate-900">~0.005 <span className="text-[10px] text-slate-400">SOL</span></p>
+            </div>
+          </div>
         </div>
       </div>
 
-      {campaign.creator === '0xCreatorAddress' && ( // TODO: Replace with actual wallet check
-        <div className="bg-slate-900 rounded-xl p-4 text-white">
-          <h3 className="text-sm font-bold text-slate-400 uppercase mb-3">Creator Actions</h3>
-          <div className="grid grid-cols-2 gap-3">
-            <Link
-              href={`/campaign/edit/${pda}`}
-              className="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors"
-            >
-              <FaEdit />
-              Edit
-            </Link>
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 bg-red-900/50 hover:bg-red-900 text-red-200 py-2 px-4 rounded-lg text-sm font-medium transition-colors border border-red-900"
-            >
-              <FaTrashAlt />
-              Delete
-            </button>
-            <button
-              className="col-span-2 flex items-center justify-center gap-2 bg-emerald-900/50 hover:bg-emerald-900 text-emerald-200 py-3 px-4 rounded-lg text-sm font-medium transition-colors border border-emerald-900"
-            >
-              <FaDollarSign />
-              Withdraw Funds
-            </button>
-          </div>
+      <div className="bg-emerald-500 shadow-lg shadow-emerald-500/10 border border-emerald-400/20 p-6 rounded-[2rem] flex gap-4 items-start group">
+        <div className="w-10 h-10 shrink-0 bg-white rounded-xl flex items-center justify-center text-emerald-600 shadow-sm transform group-hover:rotate-12 transition-transform">
+          <FaShieldAlt className="text-sm" />
         </div>
-      )}
+        <div>
+          <h4 className="text-[10px] font-black text-white uppercase tracking-widest mb-1 opacity-90">Trust Verified</h4>
+          <p className="text-[11px] text-emerald-50 font-medium leading-relaxed">
+            Funds are managed by the Fundus smart contract. No central party can access assets before target completion.
+          </p>
+        </div>
+      </div>
+
+      <div className="bg-white border border-slate-100 p-6 rounded-[2rem] flex gap-4 items-start shadow-sm">
+        <div className="w-10 h-10 shrink-0 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center text-slate-400">
+          <FaInfoCircle className="text-sm" />
+        </div>
+        <div>
+          <h4 className="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-1">Commitment Policy</h4>
+          <p className="text-[11px] text-slate-500 font-medium leading-relaxed">
+            By funding, you agree to the immutable protocol terms. Withdrawals are subject to specific contract logic.
+          </p>
+        </div>
+      </div>
     </div>
   )
 }
-
-export default CampaignDonate

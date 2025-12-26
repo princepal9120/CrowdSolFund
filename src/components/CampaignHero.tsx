@@ -15,19 +15,19 @@ const CampaignHero = () => {
       <div className="container mx-auto px-6 py-24 md:py-32 relative z-10">
         <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
           <div className="md:w-1/2 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/50 border border-emerald-500/30 text-emerald-400 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-widest mb-8">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              Live on Solana Devnet
+              Primary Protocol Engine
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white tracking-tight">
-              Fund the Future on <span className="text-emerald-400">Solana</span>
+            <h1 className="text-5xl md:text-7xl font-black leading-[1.1] text-white tracking-tighter">
+              The Protocol for <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">Global Funding</span>
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl mx-auto md:mx-0">
-              A decentralized, transparent crowdfunding platform built for serious operators. Securely raise capital or back projects with full on-chain verification.
+            <p className="mt-8 text-lg md:text-xl text-slate-400 leading-relaxed max-w-xl mx-auto md:mx-0 font-medium tracking-tight">
+              A high-integrity fundraising layer on Solana. Secure, immutable, and optimized for professional capital formation.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
@@ -63,15 +63,26 @@ const CampaignHero = () => {
             </div>
           </div>
 
-          <div className="md:w-1/2 relative">
-            <div className="absolute inset-0 bg-emerald-500/20 blur-3xl rounded-full transform rotate-12" />
-            <Image
-              src="https://cdn.pixabay.com/photo/2015/02/27/18/31/money-652560_960_720.jpg"
-              alt="Crowdfunding Illustration"
-              width={600}
-              height={400}
-              className="w-full rounded-2xl shadow-2xl relative z-10 border border-slate-700/50"
-            />
+          <div className="md:w-1/2 relative group">
+            <div className="absolute inset-0 bg-emerald-500/30 blur-[120px] rounded-full transform rotate-12 group-hover:bg-blue-500/20 transition-colors duration-1000" />
+            <div className="relative z-10 p-4 bg-slate-800/40 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden group-hover:border-emerald-500/30 transition-all duration-500">
+              <Image
+                src="https://images.pexels.com/photos/8370752/pexels-photo-8370752.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Digital Assets"
+                width={800}
+                height={600}
+                className="w-full rounded-[1.8rem] shadow-inner opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700"
+              />
+              <div className="absolute bottom-10 left-10 p-6 bg-slate-900/80 backdrop-blur-md rounded-2xl border border-white/5 flex items-center gap-4 animate-float shadow-xl">
+                <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center">
+                  <span className="text-emerald-400 font-bold">SOL</span>
+                </div>
+                <div>
+                  <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Network Status</div>
+                  <div className="text-white font-bold">Protocol Active</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

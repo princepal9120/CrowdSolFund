@@ -2,23 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+:root {
+  /* Professional Protocol Minimalism Palette */
+  --background: #f8fafc; /* Slate 50 */
+  --foreground: #0f172a; /* Slate 900 */
+
+  --primary: #16a34a; /* Emerald 600 */
+  --primary-hover: #15803d; /* Emerald 700 */
+
+  --secondary: #0f172a; /* Slate 900 */
+  --secondary-foreground: #f8fafc; /* Slate 50 */
+
+  --muted: #64748b; /* Slate 500 */
+  --border: #e2e8f0; /* Slate 200 */
+}
+
 body {
-    min-height: 100%;
-    background: white;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Wallet Adapter Overrides for Protocol Look */
 .wallet-adapter-button-trigger {
-    background: rgb#16a34a !important;
-    border-radius: 8px !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-}
-.wallet-adapter-dropdown-list,
-.wallet-adapter-button {
-    font-family: inherit !important;
+  background-color: var(--primary) !important;
+  color: white !important;
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  height: 44px !important;
+  padding: 0 20px !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease-in-out !important;
 }
 
-input, textarea {
-    background-color: transparent;
+.wallet-adapter-button-trigger:hover {
+  background-color: var(--primary-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.wallet-adapter-dropdown-list {
+  background-color: white !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+  padding: 8px !important;
+}
+
+.wallet-adapter-dropdown-list-item {
+  color: var(--foreground) !important;
+  font-family: inherit !important;
+  border-radius: 4px !important;
+}
+
+.wallet-adapter-dropdown-list-item:hover {
+  background-color: #f1f5f9 !important; /* Slate 100 */
+}
+
+.wallet-adapter-modal-wrapper {
+  background-color: white !important;
+  border-radius: 12px !important;
+}
+
+.wallet-adapter-modal-title {
+  color: var(--foreground) !important;
+  font-weight: 600 !important;
+}
+
+input,
+textarea {
+  transition: all 0.2s;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary);
+  ring: 2px;
+  ring-color: rgba(22, 163, 74, 0.2);
 }

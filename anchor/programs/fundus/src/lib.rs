@@ -4,7 +4,7 @@ use anchor_lang::prelude::*;
 declare_id!("AWMHjJYpfc8iDrHRALDryZtw8X2FQubnwH5ztGnxSatu");
 
 #[program]
-pub mod fundus {
+pub mod crowdfund {
     use super::*;
 
     /// Sets a greeting message in the account.

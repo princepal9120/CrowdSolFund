@@ -1,7 +1,9 @@
 import React from 'react'
 import { FaTimes, FaTrashAlt } from 'react-icons/fa'
 
-const DeleteModal = () => {
+import { Campaign } from '@/utils/interfaces'
+
+const DeleteModal = ({ campaign, pda }: { campaign: Campaign; pda: string }) => {
   const delModal = 'scale-0'
   const handleClose = () => {
     // Close the modal functionality (static, no Redux)

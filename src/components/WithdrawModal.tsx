@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaTimes } from 'react-icons/fa'
+import { FaTimes, FaCoins, FaArrowRight } from 'react-icons/fa'
 
 const WithdrawModal = ({
   campaign,
@@ -7,7 +7,7 @@ const WithdrawModal = ({
   campaign: { title: string; balance: number }
 }) => {
   const [amount, setAmount] = useState('')
-  const withModal = 'scale-0'
+  const withModal = 'scale-0' // Controlled by parent normally, keeping static for now
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -21,55 +21,73 @@ const WithdrawModal = ({
   return (
     <div
       className={`fixed top-0 left-0 w-screen h-screen flex items-center justify-center
-      bg-black bg-opacity-50 transform z-[3000] transition-transform duration-300 ${withModal}`}
+      bg-slate-900/80 backdrop-blur-sm z-[3000] transition-opacity duration-300 ${withModal}`}
     >
-      <div className="bg-white shadow-lg shadow-slate-900 rounded-xl w-11/12 md:w-2/5 h-7/12 p-6">
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <div className="flex flex-row justify-between items-center">
-            <p className="block text-sm font-semibold text-gray-700">
-              Creator Withdrawal
-            </p>
-            <button
-              type="button"
-              className="border-0 bg-transparent focus:outline-none"
-              onClick={() => {}}
-            >
-              <FaTimes className="text-gray-400" />
-            </button>
+      <div className="bg-white shadow-2xl rounded-2xl w-full max-w-md mx-4 overflow-hidden transform transition-all">
+        {/* Header */}
+        <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex justify-between items-center">
+          <h3 className="text-lg font-bold text-slate-800">Withdraw Funds</h3>
+          <button
+            type="button"
+            className="text-slate-400 hover:text-slate-600 transition-colors"
+            onClick={() => { }}
+          >
+            <FaTimes />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <div className="mb-6 p-4 bg-emerald-50 rounded-xl border border-emerald-100 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="bg-emerald-100 p-2 rounded-lg text-emerald-600">
+                <FaCoins />
+              </div>
+              <div>
+                <p className="text-xs text-emerald-800 font-semibold uppercase">Available Balance</p>
+                <p className="text-lg font-bold text-emerald-900">{campaign.balance.toFixed(2)} SOL</p>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <input
-              type="text"
-              name="donationAmount"
-              placeholder={`1 SOL (${campaign.balance.toFixed(
-                2
-              )} SOL available)`}
-              value={amount}
-              onChange={(e) => {
-                const value = e.target.value
-                if (/^\d*\.?\d{0,2}$/.test(value)) {
-                  setAmount(value)
-                }
-              }}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-              min="1"
-              required
-            />
-          </div>
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Withdrawal Amount
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  name="donationAmount"
+                  placeholder="0.00"
+                  value={amount}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    if (/^\d*\.?\d{0,2}$/.test(value)) {
+                      setAmount(value)
+                    }
+                  }}
+                  className="w-full pl-4 pr-16 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none font-semibold text-slate-900"
+                  min="0.01"
+                  required
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">SOL</span>
+              </div>
+            </div>
 
-          <div className="flex justify-center w-full">
             <button
               type="submit"
               disabled={!amount}
-              className={`w-full bg-green-600 hover:bg-green-700 ${
-                !amount ? 'opacity-50 cursor-not-allowed' : ''
-              } text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center gap-2`}
+              className={`w-full py-3.5 px-4 rounded-xl font-bold text-white flex items-center justify-center gap-2 transition-all
+                 ${!amount
+                  ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                  : 'bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-600/20 hover:-translate-y-0.5'
+                }`}
             >
-              Withdraw
+              Confirm Withdrawal
+              <FaArrowRight className="text-xs" />
             </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   )

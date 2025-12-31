@@ -1,4 +1,4 @@
-# crowdfund
+# CrowdSolFund
 
 ## Getting Started
 

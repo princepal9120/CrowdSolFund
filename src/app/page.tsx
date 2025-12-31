@@ -15,9 +15,9 @@ export default function Page() {
   if (!connected) {
     return (
       <HeroGeometric
-        badge="#1 CrowdFunding Platform"
+        badge="#1 CrowdSolFunding Platform"
         title1="Revolutionize"
-        title2="Crowdfunding"
+        title2="CrowdSolFunding"
       />
     )
   }

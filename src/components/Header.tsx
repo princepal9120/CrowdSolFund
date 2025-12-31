@@ -23,7 +23,7 @@ export default function Header() {
             CF
           </div>
           <span className="text-lg font-bold text-white tracking-tight">
-            Crowd<span className="text-emerald-400">Fund</span>
+            CrowdSol<span className="text-emerald-400">Fund</span>
           </span>
         </Link>
 

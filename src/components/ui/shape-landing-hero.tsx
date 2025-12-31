@@ -191,7 +191,7 @@ function HeroGeometric({
                         >
                             <p className="text-base sm:text-lg md:text-xl text-white/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
                                 Empower innovation through transparent, secure, and
-                                decentralized crowdfunding. Connect directly with
+                                decentralized CrowdSolFunding. Connect directly with
                                 creators using Web3 technology.
                             </p>
                         </motion.div>

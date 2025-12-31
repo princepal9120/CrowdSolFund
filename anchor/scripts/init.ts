@@ -1,6 +1,6 @@
 import * as anchor from '@coral-xyz/anchor'
-import idl from '../target/idl/crowdfund.json'
-import { crowdfund } from '../target/types/crowdfund'
+import idl from '../target/idl/CrowdSolFund.json'
+import { CrowdSolFund } from '../target/types/CrowdSolFund'
 import fs from 'fs'
 const { SystemProgram, PublicKey } = anchor.web3
 
@@ -35,7 +35,7 @@ async function main(cluster: string) {
   anchor.setProvider(provider)
 
   // Load the program
-  const program = new anchor.Program<crowdfund>(idl as any, provider)
+  const program = new anchor.Program<CrowdSolFund>(idl as any, provider)
 
   const [programStatePda] = PublicKey.findProgramAddressSync(
     [Buffer.from('program_state')],

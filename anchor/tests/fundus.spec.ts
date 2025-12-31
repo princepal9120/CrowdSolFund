@@ -1,10 +1,10 @@
 const anchor = require('@coral-xyz/anchor')
 const { SystemProgram, PublicKey } = anchor.web3
 
-describe('crowdfund', () => {
+describe('CrowdSolFund', () => {
   const provider = anchor.AnchorProvider.local()
   anchor.setProvider(provider)
-  const program = anchor.workspace.crowdfund
+  const program = anchor.workspace.CrowdSolFund
 
   let CID: any, DONOR_COUNT: any, WITHDRAWAL_COUNT: any
 

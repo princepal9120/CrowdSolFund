@@ -1,19 +1,30 @@
 'use client'
 
+import { HeroGeometric } from '@/components/ui/shape-landing-hero'
 import CampaignCard from '@/components/CampaignCard'
-import CampaignHero from '@/components/CampaignHero'
 import { campaigns as dummyCampaign } from '../data'
 import { FaSearch, FaFilter } from 'react-icons/fa'
+import { useState } from 'react'
 
 export default function Page() {
   // Use the dummy data directly
   const campaigns = dummyCampaign
+  const [showCampaigns, setShowCampaigns] = useState(false)
+
+  if (!showCampaigns) {
+    return (
+      <HeroGeometric
+        badge="#1 CrowdFunding Platform"
+        title1="Revolutionize"
+        title2="Crowdfunding"
+        onStartExploring={() => setShowCampaigns(true)}
+      />
+    )
+  }
 
   return (
-    <div className="bg-slate-50 min-h-screen pb-20">
-      <CampaignHero />
-
-      <div className="container mx-auto px-6 -mt-10 relative z-20">
+    <div className="bg-slate-50 min-h-screen pb-20 pt-10">
+      <div id="campaigns" className="container mx-auto px-6 relative z-20">
         <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl shadow-slate-200/50 p-6 mb-12 flex flex-col md:flex-row gap-4 items-center justify-between border border-white">
           <div className="relative w-full md:w-96 group">
             <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors" />

@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  /* Professional Protocol Minimalism Palette */
-  --background: #f8fafc; /* Slate 50 */
-  --foreground: #0f172a; /* Slate 900 */
+  /* Dark Theme Palette */
+  --background: #030303; /* Near black */
+  --foreground: #f8fafc; /* Slate 50 - white text */
 
-  --primary: #16a34a; /* Emerald 600 */
-  --primary-hover: #15803d; /* Emerald 700 */
+  --primary: #10b981; /* Emerald 500 */
+  --primary-hover: #059669; /* Emerald 600 */
 
-  --secondary: #0f172a; /* Slate 900 */
+  --secondary: #1e293b; /* Slate 800 */
   --secondary-foreground: #f8fafc; /* Slate 50 */
 
-  --muted: #64748b; /* Slate 500 */
-  --border: #e2e8f0; /* Slate 200 */
+  --muted: #94a3b8; /* Slate 400 */
+  --border: #334155; /* Slate 700 */
 }
 
 body {
